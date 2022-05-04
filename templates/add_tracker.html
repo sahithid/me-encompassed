@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    {% if type == 'physical' %}
+        
+        {% include 'add/_ph.html' %}
+    {% elif type == 'emotional' %}
+        {% include 'add/_em.html' %} 
+    {% elif type == 'spiritual' %}
+        {% include 'add/_sp.html' %} 
+    {% elif type == 'social' %}
+        {% include 'add/_so.html' %}
+    {% elif type == 'intellectual' %}
+        {% include 'add/_in.html' %}
+    
+    {% else %}
+        NOT VALID
+    {% endif %}
+
+{% endblock %}

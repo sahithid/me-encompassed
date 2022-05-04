@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div class="row mx-md-n5 align-items-center" >
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #fce1e4;">
+            <h3> PhysicalTracker </h3>
+            <p><i>The physical tracker tracks you physical activity and the amount of time said activity is done.</i></p>
+            <form><button type="submit", formaction="{{ url_for('physical', user=username) }}">Physical</button> <button type="submit", formaction="{{ url_for('add_tracker', user=username, type='physical') }}">Add Tracker</button></form>
+            <p></p> 
+        </div>
+
+    </div></div>
+
+    
+</div>
+
+<br><br>
+
+<div class="row" >
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+            <div class="card-body " style="background-color: #e8dff5;">
+                    <h3> Emotional Tracker </h3>
+                    <p><i>The emotional tracker tracks your mood in three basic mood ranges. Sad vs. Happy, Calm vs. Angry, and Bored vs. Excited. These are the basic building blocks to your emotions at any given time or day. </i></p>
+                    <form><button type="submit", formaction="{{ url_for('emotional', user=username) }}">Emotional</button> <button type="submit", formaction="{{ url_for('add_tracker', user=username, type='emotional') }}">Add Tracker</button></form>
+                    <p></p>
+            </div>
+
+    </div></div>
+
+    
+
+</div>
+
+<br><br>
+
+<div class="row">
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #fcf4dd;">
+            <h3> Intellectual Tracker </h3>
+            <p><i>The intellectual tracker tracks your productivity and how long you've used your brain.</i></p>
+            <form><button type="submit", formaction="{{ url_for('intellectual', user=username) }}">Intellectual</button> <button type="submit", formaction="{{ url_for('add_tracker', user=username, type='intellectual') }}">Add Tracker</button></form>
+            <p></p>
+        </div>
+
+    </div></div>
+
+    
+</div>
+
+<br><br>
+
+<div class="row" >
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #daeaf6;">
+            <h3> Social Tracker </h3>
+            <p><i>The social tracker tracks your social wellbeing in terms of your social interaction. It asks a set of questions and gives a score based on the answer. The higher the social score, the more social interaction you had at a given day.</i></p>
+            <form><button type="submit", formaction="{{ url_for('social', user=username) }}">Social</button> <button type="submit", formaction="{{ url_for('add_tracker', user=username, type='social') }}">Add Tracker</button></form>
+            <p></p>
+        </div>
+
+    </div></div>
+
+    
+
+</div>
+
+<br><br>
+
+<div class="row mx-md-n5 align-items-center" >
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #ddedea;">
+            <h3> Spiritual Tracker </h3>
+            <p><i>The spiritual tracker is a simple measure of how long you have been spiritual at a given time or day. It tracks mindfulness. </i></p>
+            <form><button type="submit", formaction="{{ url_for('spiritual', user=username) }}">Physical</button> <button type="submit", formaction="{{ url_for('add_tracker', user=username, type='spiritual') }}">Add Tracker</button></form>
+            <p></p>
+        </div>
+
+    </div></div>
+
+    
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h2> <i>Your Spiritual Space </i></h2>
+<br>
+
+<div class="add_button">
+  <form><button style="background-color: #ddedea;" type="submit", formaction="{{ url_for('add_tracker', user=username, type='spiritual') }}">Add Tracker</button></form>
+</div>
+
+<canvas class="my-4 w-100" id="lineGraph" width="900" height="380"></canvas>
+
+<script> 
+  var ch = document.getElementById("lineGraph").getContext("2d"); 
+  var lc = new Chart(ch, {type: "bar", 
+                          data: { labels: {{ labels | safe }}, 
+                                  datasets: [ 
+                                            {label: "Spiritual time (in minutes)", 
+                                             data: {{values | safe }}, 
+                                             lineTension: 0.1,
+                                             fill: false, 
+                                             backgroundColor: ["rgb(221,237,234)"]
+                                            } 
+                                            ]
+                                }, 
+                                options: {
+                                  scales: { 
+                                    yAxes: [{
+                                      ticks: {
+                                        beginAtZero: true
+                                      }
+                                    }]
+                                  }
+                                }
+                        }); 
+
+</script>
+
+<div class="row mx-md-n5 align-items-center" >
+  <div class="col px-md-8"><div class="p-2 border bg-light">
+      <div class="card-body " style="background-color: #ddedea;">
+
+        <table class="table table-striped table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Time</th>
+              <th scope="col">Length</th>
+              <th scope="col">Note</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+              {% for item in data %} 
+            <tr>
+              <th scope="row">{{item.id}}</th>
+              <td>{{ item.timeStamp }}</td>
+              <td>{{ item.length }}</td>
+              <td>{{ item.note }}</td>
+              <td> <form> <button type="submit" formaction="{{ url_for('update', user=username, type='spiritual',t_id = item.id) }}">Edit</button> <button type="submit" formaction="{{ url_for('delete_tracker', user=username, type='spiritual',t_id = item.id) }}" onclick="return confirm('Do you want to delete this tracker?');">Delete</button> </form></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+    </div></div>
+  
+    
+  </div>
+
+{% endblock %}
+

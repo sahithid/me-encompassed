@@ -1,0 +1,155 @@
+{% extends 'layout.html' %}
+
+
+{% block body %}
+
+<h2> <i>Your Emotional Space </i></h2> <br>
+
+<div class="add_button">
+    <form><button style="background-color: #e8dff5;" type="submit", formaction="{{ url_for('add_tracker', user=username, type='emotional') }}">Add Tracker</button></form>
+  </div> 
+
+<canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>
+
+<script>
+    var q1 = {{ q1_data | safe}}; 
+    var q2 = {{ q2_data | safe}};
+    var q3 = {{ q3_data | safe}};
+    var q4 = {{ q4_data | safe}};
+    var q5 = {{ q5_data | safe}};
+    var q6 = {{ q6_data | safe}};
+    var q7 = {{ q7_data | safe}};
+    var q8 = {{ q8_data | safe}};
+    var lab = {{ labels | safe }}; 
+    
+    const data2 = {
+        labels: lab,
+        datasets: [
+            {
+                label: 'Happy',
+                data: q1,
+                backgroundColor: "#edd607",
+            },
+            {
+                label: 'Angry',
+                data: q2,
+                backgroundColor: "#ed0722",
+            },
+            {
+                label: 'Sad',
+                data: q3,
+                backgroundColor: "#0611a1",
+            },
+            {
+                label: 'Interest/Anticipation',
+                data: q4,
+                backgroundColor: "#cf5f0a",
+            },
+            {
+                label: 'Disgust/Loathing',
+                data: q5,
+                backgroundColor: "#d11799",
+            },
+            {
+                label: 'Admiration/Awe',
+                data: q6,
+                backgroundColor: "#17d16e",
+            },
+            {
+                label: 'Amazement/Suprise',
+                data: q7,
+                backgroundColor: "#8907ed",
+            },
+            {
+                label: 'Fear/Anxiety',
+                data: q8,
+                backgroundColor: "#08631a",
+            },
+        ]
+
+    }; 
+
+    const config = {
+        type: 'bar',
+        data: data2,
+        options: {
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Chart.js Bar Chart - Stacked'
+                },
+            },
+            responsive: true,
+            scales: {
+                x: {
+                    stacked: true,
+                },
+                y: {
+                    stacked: true
+                },
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    };
+
+    const myChart = new Chart(
+        document.getElementById('myChart'), 
+        config  
+    ); 
+</script>
+
+
+
+
+<div class="row mx-md-n5 align-items-center" >
+    <div class="col px-md-8"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #e8dff5;">
+            <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Time</th>
+                <th scope="col">Happy</th>
+                <th scope="col">Angry</th>
+                <th scope="col">Sad</th>
+                <th scope="col">Interest/Anticipation</th>
+                <th scope="col">Disgust/Loathing</th>
+                <th scope="col">Admiration/Awe</th>
+                <th scope="col">Amazement/Suprise</th>
+                <th scope="col">Fear/Anxiety</th>
+                <th scope="col">Note</th>
+                <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %} 
+                <tr>
+                <th scope="row">{{item.id}}</th>
+                <td>{{ item.timeStamp }}</td>
+                <td>{{ item.q1 }}</td>
+                <td>{{ item.q2 }}</td>
+                <td>{{ item.q3 }}</td>
+                <td>{{ item.q4 }}</td>
+                <td>{{ item.q5 }}</td>
+                <td>{{ item.q6 }}</td>
+                <td>{{ item.q7 }}</td>
+                <td>{{ item.q8 }}</td>
+                <td>{{ item.note }}</td>
+                <td> <form> <button type="submit" formaction="{{ url_for('update', user=username, type='emotional',t_id = item.id) }}">Edit</button> <button type="submit" formaction="{{ url_for('delete_tracker', user=username, type='emotional',t_id = item.id) }}" onclick="return confirm('Do you want to delete this tracker?');">Delete</button> </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </table>
+        </div>
+
+    </div></div>
+  
+    
+  </div>
+
+{% endblock %}
+

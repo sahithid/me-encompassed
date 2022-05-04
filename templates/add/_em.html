@@ -1,0 +1,85 @@
+
+ {% if add %}
+ <h2>Add Emotional Tracker</h2> 
+ <p><i>Please choose how you're feeling for eaech category. 
+     The leftmost choice being smallest (1) and the uppermost being the most (5). 
+     For example, a happiness range of 5 indicates the highest level of happiness. 
+ 
+     Please remember, these emotions could be towards anything in general. 
+ </i></p>
+
+
+ <div class="row mx-md-n5 align-items-center" >
+    <div class="col px-md-4"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #e8dff5;">
+            <form action = "{{ url_for('emotional', user=username)}}" method = "POST">
+                <label for="customRange3" class="form-label">Happy Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q1" > </input>  
+                <label for="customRange3" class="form-label">Angry Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q2" > </input>  
+                <label for="customRange3" class="form-label">Sad Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q3" > </input>
+                <label for="customRange3" class="form-label">Interest/Anticipation Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q4" > </input>
+                <label for="customRange3" class="form-label">Disgust/Loathing Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q5" > </input>
+                <label for="customRange3" class="form-label">Admiration/Awe Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q6" > </input>
+                <label for="customRange3" class="form-label">Amazement/Suprise Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q7" > </input>
+                <label for="customRange3" class="form-label">Fear/Anxiety Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q8" > </input>
+                <p>Note : </p>
+                <input type ="text" name = "note" placeholder="How do you feel?" rows="4" cols="50" style="height:200px;font-size:14pt;"></input>
+                <p><input type = "submit" value = "ADD" /></p>
+            </form>
+        </div></div>
+  
+    
+    </div>
+</div>
+ 
+{% endif %}
+
+{% if update %}
+
+<h2>Update Emotional Tracker</h2>
+<p><i>Please choose how you're feeling for eaech category. 
+    The leftmost choice being smallest (1) and the uppermost being the most (5). 
+    For example, a happiness range of 5 indicates the highest level of happiness. 
+
+    Please remember, these emotions could be towards anything in general. 
+</i></p>
+
+<div class="row mx-md-n5 align-items-center" >
+    <div class="col px-md-4"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #e8dff5;">
+            <form action = "{{ url_for('update_tracker', user=username, type = 'emotional', t_id = item.id)}}" method = "POST">
+                <label for="customRange3" class="form-label">Happy Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q1" value="{{ item.q1 }}"> </input>  
+                <label for="customRange3" class="form-label">Angry Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q2" value="{{ item.q2 }}"> </input>  
+                <label for="customRange3" class="form-label">Sad Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q3" value="{{ item.q3 }}"> </input>
+                <label for="customRange3" class="form-label">Interest/Anticipation Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q4" value="{{ item.q4 }}"> </input>
+                <label for="customRange3" class="form-label">Disgust/Loathing Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q5" value="{{ item.q5 }}"> </input>
+                <label for="customRange3" class="form-label">Admiration/Awe Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q6" value="{{ item.q6 }}"> </input>
+                <label for="customRange3" class="form-label">Amazement/Suprise Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q7" value="{{ item.q7 }}"> </input>
+                <label for="customRange3" class="form-label">Fear/Anxiety Range</label>
+                <input type="range" class="form-range" min="1" max="5" step="1" id="customRange3" name="q8" value="{{ item.q8 }}"> </input>
+                <p>Note : </p>
+                <input type ="text" name = "note" placeholder="How do you feel?" rows="4" cols="50" value="{{ item.note }}" style="height:200px;font-size:14pt;"></input>
+                <p><input type = "submit" value = "ADD" /></p>
+            </form>
+        </div>
+
+    </div></div>
+  
+    
+  </div>
+
+{% endif %}

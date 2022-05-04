@@ -1,0 +1,29 @@
+<h2>Social Tracker</h2> 
+
+<div class="row mx-md-n5 align-items-center" > 
+    <div class="col px-md-4"><div class="p-2 border bg-light">
+        <div class="card-body " style="background-color: #daeaf6;">
+            <form action = "{{ url_for('social', user=username) }}" method = "POST">
+                <p>The following questions will determine you social score for the specific Tracker. 
+                    It is advised to do one tracker per day as the questions will focus on what you did the entire day. </p>
+                <p> Did you interact with another person today?</p> 
+                <input type="radio" name="q1", value="y" id="q"> YES! </input> <input type="radio" name="q1", value="n" id="qn"> No </input>
+                <p> Did you spend any time interacting with friends or family (online/in-person)? </p>
+                <input type="radio" name="q2", value="y" id="q"> YES! </input> <input type="radio" name="q2", value="n" id="qn"> No </input>   
+                <p> Did you spend any time volunteering or being part of the community? </p>
+                <input type="radio" name="q3", value="y" id="q"> YES! </input> <input type="radio" name="q3", value="n" id="qn"> No </input>
+                <p> Any random act of kindness today? (It could be anything like waving hello to someone, expressing gratitude, etc.)</p>
+                <input type="radio" name="q4", value="y" id="q"> YES! </input> <input type="radio" name="q4", value="n" id="qn"> No </input>
+                <p> How do you feel about your social interactions today? </p>
+                <input type="radio" name="q5", value="y" id="q"> I feel fantastic! </input> <input type="radio" name="q5", value="n" id="qn"> Meh, it wasn't great. </input>
+                <p>Note : </p>
+                <textarea type ="text" name = "note" placeholder="How do you feel about your social interactions today?" rows="4" cols="50"></textarea>
+                <p><input type = "submit" value = "Submit" /></p>
+            </form>
+        </div>
+
+    </div></div>
+  
+    
+  </div>
+

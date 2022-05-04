@@ -1,0 +1,51 @@
+<h2>Add Physical Tracker</h2>
+
+{% if add %} 
+<div class="row mx-md-n5 align-items-center" >
+  <div class="col px-md-4"><div class="p-2 border bg-light">
+      <div class="card-body " style="background-color: #fce1e4;">
+        <form action = "{{ url_for('physical', user=username) }}" method = "POST">
+            <p>Activity : <input type="text" name="activity" placeholder="Type of Physical Activity"/></p>
+            <p>Length</p>
+            <p>Hours : <input type="number" name = "hours" min="0" max="24" step="1" required/></p>
+            <p>Minutes : <input type="number" name = "minutes" min="0" max="60" step="1" required/></p>
+            <p>Note: </p>
+            <textarea type ="text" name = "note" placeholder="How did the physical activity go?" rows="4" cols="50"></textarea>
+            <p><input type = "submit" value = "ADD" /></p>
+        </form>
+      </div>
+
+    </div></div>
+  
+    
+  </div>
+
+{% endif %}
+
+{% if update %}
+<div class="row mx-md-n5 align-items-center" >
+  <div class="col px-md-4"><div class="p-2 border bg-light">
+      <div class="card-body " style="background-color: #fce1e4;">
+
+        <form action = "{{ url_for('update_tracker', user=username, type='physical',t_id = item.id) }}" method = "POST">
+          <p>Activity : <input type="text" name="activity" value="{{item.activity}}"/></p>
+          <p>Length</p>
+          <p>Hours : <input type="number" name = "hours" min="0" max="24" step="1" value="{{item.length}}"/></p>
+          <p>Minutes : <input type="number" name = "minutes" min="0" max="60" step="1" value="{{item.length}}"/></p>
+          <p>Note : </p>
+          <input type ="text" name = "note" rows="4" cols="50" value="{{item.note}}"></input>
+          <p><input type = "submit" value = "Update" onclick="return confirm('Do you want to update this tracker?');" /></p>
+        </form>
+      </div>
+
+    </div></div>
+  
+    
+  </div>
+{% endif %}
+
+<script>
+    function added() {
+      alert("Tracker Sucessfully added!");
+    }
+</script>

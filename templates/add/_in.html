@@ -1,0 +1,51 @@
+
+
+{% if add %} 
+<h2>Add Intellectual Tracker</h2>
+
+<div class="row mx-md-n5 align-items-center" >
+  <div class="col px-md-4"><div class="p-2 border bg-light">
+      <div class="card-body " style="background-color: #fcf4dd;">
+        <form action = "{{ url_for('intellectual', user=username) }}" method = "POST">
+            <p>Activity : <input type="text" name="activity" placeholder="Type of Activity"/></p>
+            <p>Length</p>
+            <p>Minutes : <input type="number" name = "minutes" min="0" max="1440" step="1"/></p>
+            <p>Note : </p>
+            <input type ="text" name = "note" placeholder="Personal Note" rows="4" cols="50" style="height:200px;font-size:14pt;"></input>
+            <p><input type = "submit" value = "submit" /></p>
+        </form>
+      </div></div>
+  
+    
+    </div>
+</div>
+ 
+{% endif %}
+
+{% if update %}
+<h2>Update Intellectual Tracker</h2>
+
+<div class="row mx-md-n5 align-items-center" >
+  <div class="col px-md-4"><div class="p-2 border bg-light">
+      <div class="card-body " style="background-color: #fcf4dd;">
+        <form action = "{{ url_for('update_tracker', user=username, type='intellectual',t_id = item.id) }}" method = "POST">
+          <p>Activity : <input type="text" name="activity" value="{{item.activity}}"/></p>
+          <p>Length</p>
+          <p>Minutes : <input type="number" name = "minutes" min="0" max="1440" step="1" value="{{item.length}}"/></p>
+          <p>Note : </p>
+          <input type ="text" name = "note" rows="4" cols="50" value="{{item.note}}" style="height:200px;font-size:14pt;"></input>
+          <p><input type = "submit" value = "Update" onclick="return confirm('Do you want to update this tracker?');" /></p>
+        </form>
+</div></div>
+  
+    
+</div>
+</div>
+
+{% endif %}
+
+<script>
+    function added() {
+      alert("Tracker Sucessfully added!");
+    }
+</script>

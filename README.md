@@ -3,6 +3,8 @@
 The following are the steps to take to run the M.E Application. 
 
 Running the M.E Application 
+    
+    
     1. Create a Virtual Environment
         - Open the terminal 
         - Go to the project directory 
